@@ -15,8 +15,8 @@ class GradientColorsVC: UIViewController, MSCircularSliderDelegate, ColorPickerD
     @IBOutlet weak var firstColorBtn: UIButton!
     @IBOutlet weak var secondColorBtn: UIButton!
     @IBOutlet weak var thirdColorBtn: UIButton!
-    
-    
+    @IBOutlet private var bgShadow: UIImageView!
+
     // Members
     var currentColorPickTag = 0
     var colorPicker: ColorPickerView?
@@ -32,7 +32,7 @@ class GradientColorsVC: UIViewController, MSCircularSliderDelegate, ColorPickerD
     // Init
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        slider.backgroundColor = .white
         colorPicker = ColorPickerView(frame: CGRect(x: 0, y: view.center.y - view.frame.height * 0.3 / 2.0, width: view.frame.width, height: view.frame.height * 0.3))
         colorPicker?.isHidden = true
         colorPicker?.delegate = self
@@ -51,6 +51,7 @@ class GradientColorsVC: UIViewController, MSCircularSliderDelegate, ColorPickerD
     // Delegate Methos
     func circularSlider(_ slider: MSCircularSlider, valueChangedTo value: Double, fromUser: Bool) {
         valueLbl.text = String(format: "%.1f", value)
+        bgShadow.tintColor = slider.filledColor
     }
     
     func colorPickerTouched(sender: ColorPickerView, color: UIColor, point: CGPoint, state: UIGestureRecognizer.State) {

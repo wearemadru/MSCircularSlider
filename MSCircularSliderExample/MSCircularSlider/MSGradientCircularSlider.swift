@@ -49,6 +49,7 @@ public class MSGradientCircularSlider: MSCircularSlider {
         
         let anglePercentage = Double(angle) * 100.0 / Double(maximumAngle)
         filledColor = colorFor(percentage: anglePercentage)
+        
         setNeedsDisplay()
     }
     

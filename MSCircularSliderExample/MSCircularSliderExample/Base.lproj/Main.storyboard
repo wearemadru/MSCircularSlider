@@ -582,7 +582,7 @@ Minimum Distance Between Handles: 10
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxu-Nw-nxR" customClass="MSGradientCircularSlider" customModule="MSCircularSliderExample" customModuleProvider="target">
                                 <rect key="frame" x="103.66666666666669" y="66" width="207" height="207"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="oxu-Nw-nxR" secondAttribute="height" multiplier="1:1" id="VCR-tx-nar"/>
                                 </constraints>
@@ -663,7 +663,7 @@ Minimum Distance Between Handles: 10
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbj-rF-3f4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1008.8" y="1608.8455772113944"/>
+            <point key="canvasLocation" x="1008.6956521739131" y="1608.4239130434785"/>
         </scene>
     </scenes>
 </document>
