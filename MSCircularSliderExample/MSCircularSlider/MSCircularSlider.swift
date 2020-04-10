@@ -693,20 +693,12 @@ public class MSCircularSlider: UIControl {
         ctx.clip()
 
         // Draw gradient
-//        let colors = [
-//            UIColor.red.cgColor,
-//            UIColor.red.cgColor,
-//            UIColor.yellow.cgColor,
-//            UIColor.yellow.cgColor,
-//            UIColor.green.cgColor
-//        ]
         let offsets = [CGFloat(1), CGFloat(0.9), CGFloat(0.6), CGFloat(0.55), CGFloat.zero]
         let start = CGPoint.zero
         let end = CGPoint(x: rect.minY, y: rect.maxY)
         guard let grad = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: unfilledGradientColor as CFArray, locations: offsets) else {
             print("nil")
             return }
-        print("eeee")
         ctx.drawLinearGradient(grad, start: start, end: end, options: [])
         ctx.setFillColor(UIColor.white.withAlphaComponent(0.8).cgColor)
         ctx.setStrokeColor(UIColor.white.withAlphaComponent(0.8).cgColor)
