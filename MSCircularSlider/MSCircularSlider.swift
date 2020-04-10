@@ -20,7 +20,7 @@ public protocol MSCircularSliderDelegate: MSCircularSliderProtocol {
     func circularSlider(_ slider: MSCircularSlider, revolutionsChangedTo value: Int)
 }
 
-public extension MSCircularSliderDelegate {
+extension MSCircularSliderDelegate {
     // Optional Methods
     func circularSlider(_ slider: MSCircularSlider, startedTrackingWith value: Double) {}
     func circularSlider(_ slider: MSCircularSlider, endedTrackingWith value: Double) {}
@@ -90,7 +90,7 @@ public class MSCircularSlider: UIControl {
     }
     
     /** The slider's circular angle - *default: 360.0 (full circle)* */
-    public var maximumAngle: CGFloat = 360.0 {     // Full circle by default
+    public var maximumAngle: CGFloat = 230.0 {     // Full circle by default
         didSet {
             if maximumAngle > 360.0 {
                 print("maximumAngle \(maximumAngle) should be 360° or less - setting member to 360°")
@@ -166,7 +166,18 @@ public class MSCircularSlider: UIControl {
     }
     
     /** The color of the unfilled part of the slider - *default: .lightGray* */
-    public var unfilledColor: UIColor = .lightGray {
+    public var unfilledColor: UIColor = .clear {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    public var unfilledGradientColor = [
+        UIColor(red: 1, green: 91 / 255, blue: 29 / 255, alpha: 1).cgColor,
+        UIColor(red: 1, green: 91 / 255, blue: 29 / 255, alpha: 1).cgColor,
+        UIColor(red: 1, green: 193 / 255, blue: 21 / 255, alpha: 1).cgColor,
+        UIColor(red: 1, green: 193 / 255, blue: 21 / 255, alpha: 1).cgColor,
+        UIColor(red: 41 / 255, green: 199 / 255, blue: 19 / 255, alpha: 1).cgColor] {
         didSet {
             setNeedsDisplay()
         }
@@ -448,17 +459,21 @@ public class MSCircularSlider: UIControl {
         super.draw(rect)
         let ctx = UIGraphicsGetCurrentContext()
         
-        // Draw filled and unfilled lines
-        drawLine(ctx: ctx!)
+        // Draw unfilled circle
+        drawUnfilledCircle(ctx: ctx!, center: centerPoint, radius: calculatedRadius, lineWidth: CGFloat(lineWidth), maximumAngle: maximumAngle, lineCap: unfilledLineCap, rect: rect)
         
+        // Draw filled and unfilled lines
+        drawLine(ctx: ctx!, rect: rect)
+
         // Draw markings
         drawMarkings(ctx: ctx!)
-        
+
         // Draw handle
         handle.draw(in: ctx!)
-        
+
         // Draw labels
         drawLabels(ctx: ctx!)
+        
         
         // Rotate slider
         let rotationalTransform = getRotationalTransform()
@@ -491,7 +506,7 @@ public class MSCircularSlider: UIControl {
             return true
         }
         
-        return false    //pointInsideCircle(location)
+        return pointInsideCircle(location)
     }
     
     override public func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
@@ -565,8 +580,8 @@ public class MSCircularSlider: UIControl {
     override public func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
         
-        snapHandle()
         castDelegate?.circularSlider(self, endedTrackingWith: currentValue)
+        snapHandle()
         
         handle.isPressed = false
         isSliding = false
@@ -585,10 +600,7 @@ public class MSCircularSlider: UIControl {
     //================================================================================
     
     /** Draws a circular line in the given context */
-    internal func drawLine(ctx: CGContext) {
-        unfilledColor.set()
-        // Draw unfilled circle
-        drawUnfilledCircle(ctx: ctx, center: centerPoint, radius: calculatedRadius, lineWidth: CGFloat(lineWidth), maximumAngle: maximumAngle, lineCap: unfilledLineCap)
+    internal func drawLine(ctx: CGContext, rect: CGRect) {
         
         filledColor.set()
         // Draw filled circle
@@ -615,7 +627,8 @@ public class MSCircularSlider: UIControl {
                 
                 // Draw label
                 label.draw(in: labelFrame, withAttributes: attributes)
-                
+                let image = UIImage(named: "circle")
+                image?.draw(in: frame)
                 ctx.restoreGState()
             }
         }
@@ -656,13 +669,54 @@ public class MSCircularSlider: UIControl {
     internal func drawFilledCircle(ctx: CGContext, center: CGPoint, radius: CGFloat) -> CGRect {
         let frame = CGRect(x: center.x - radius, y: center.y - radius, width: 2 * radius, height: 2 * radius)
         ctx.fillEllipse(in: frame)
+        
         return frame
     }
     
     /** Draws an unfilled circle in context */
-    internal func drawUnfilledCircle(ctx: CGContext, center: CGPoint, radius: CGFloat, lineWidth: CGFloat, maximumAngle: CGFloat, lineCap: CGLineCap) {
+    internal func drawUnfilledCircle(ctx: CGContext, center: CGPoint, radius: CGFloat, lineWidth: CGFloat, maximumAngle: CGFloat, lineCap: CGLineCap, rect: CGRect) {
+
+        drawGradientArc(ctx: ctx, center: center, radius: radius, lineWidth: lineWidth, fromAngle: 0, toAngle: maximumAngle, lineCap: lineCap, rect: rect)
+    }
+    
+    /** Draws a gradient arc in context */
+    internal func drawGradientArc(ctx: CGContext, center: CGPoint, radius: CGFloat, lineWidth: CGFloat, fromAngle: CGFloat, toAngle: CGFloat, lineCap: CGLineCap, rect: CGRect) {
+        let cartesianFromAngle = toCartesian(toRad(Double(fromAngle)))
+        let cartesianToAngle = toCartesian(toRad(Double(toAngle)))
         
-        drawArc(ctx: ctx, center: center, radius: radius, lineWidth: lineWidth, fromAngle: 0, toAngle: maximumAngle, lineCap: lineCap)
+        ctx.saveGState()
+        ctx.setLineWidth(lineWidth)
+        ctx.setLineCap(lineCap)
+
+        ctx.addArc(center: center, radius: radius, startAngle: CGFloat(cartesianFromAngle), endAngle: CGFloat(cartesianToAngle), clockwise: false)
+        ctx.replacePathWithStrokedPath()
+        ctx.clip()
+
+        // Draw gradient
+//        let colors = [
+//            UIColor.red.cgColor,
+//            UIColor.red.cgColor,
+//            UIColor.yellow.cgColor,
+//            UIColor.yellow.cgColor,
+//            UIColor.green.cgColor
+//        ]
+        let offsets = [CGFloat(1), CGFloat(0.9), CGFloat(0.6), CGFloat(0.55), CGFloat.zero]
+        let start = CGPoint.zero
+        let end = CGPoint(x: rect.minY, y: rect.maxY)
+        guard let grad = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: unfilledGradientColor as CFArray, locations: offsets) else {
+            print("nil")
+            return }
+        print("eeee")
+        ctx.drawLinearGradient(grad, start: start, end: end, options: [])
+        ctx.setFillColor(UIColor.white.withAlphaComponent(0.8).cgColor)
+        ctx.setStrokeColor(UIColor.white.withAlphaComponent(0.8).cgColor)
+        ctx.setLineWidth(10)
+
+        ctx.addRect(rect)
+        ctx.drawPath(using: .fillStroke)
+        ctx.restoreGState()
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
     }
     
     /** Draws an arc in context */
@@ -832,8 +886,8 @@ public class MSCircularSlider: UIControl {
         }
         else {
             angle = newAngle
+            setNeedsDisplay()
         }
-        setNeedsDisplay()
     }
     
     /** Snaps the handle to the nearest label/marker depending on the settings */
