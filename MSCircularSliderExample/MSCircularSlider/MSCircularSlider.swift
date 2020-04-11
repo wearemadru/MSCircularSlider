@@ -393,7 +393,7 @@ public class MSCircularSlider: UIControl {
         return maximumRevolutions == -1
     }
     
-    
+    public var extraRadius: CGFloat = 8
     //================================================================================
     // SETTER METHODS
     //================================================================================
@@ -459,9 +459,8 @@ public class MSCircularSlider: UIControl {
         super.draw(rect)
         let ctx = UIGraphicsGetCurrentContext()
  
-        let circlePath = UIBezierPath(arcCenter: centerPoint, radius: calculatedRadius + 8, startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: false)
+        let circlePath = UIBezierPath(arcCenter: centerPoint, radius: calculatedRadius + extraRadius, startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: false)
         
-//        circlePath.fill()
         let maskLayer = CAShapeLayer()
         maskLayer.path = circlePath.cgPath
         layer.mask = maskLayer
