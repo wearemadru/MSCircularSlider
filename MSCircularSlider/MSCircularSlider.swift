@@ -166,7 +166,7 @@ public class MSCircularSlider: UIControl {
     }
     
     /** The color of the unfilled part of the slider - *default: .lightGray* */
-    public var unfilledColor: UIColor = .clear {
+    public var unfilledColor: UIColor = .lightGray {
         didSet {
             setNeedsDisplay()
         }
@@ -440,13 +440,13 @@ public class MSCircularSlider: UIControl {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .clear
+        backgroundColor = .white
         initHandle()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        backgroundColor = .clear
+        backgroundColor = .white
         initHandle()
     }
     
@@ -458,13 +458,19 @@ public class MSCircularSlider: UIControl {
     override public func draw(_ rect: CGRect) {
         super.draw(rect)
         let ctx = UIGraphicsGetCurrentContext()
+ 
+        let circlePath = UIBezierPath(arcCenter: centerPoint, radius: calculatedRadius + 8, startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: false)
         
-        // Draw unfilled circle
-        drawUnfilledCircle(ctx: ctx!, center: centerPoint, radius: calculatedRadius, lineWidth: CGFloat(lineWidth), maximumAngle: maximumAngle, lineCap: unfilledLineCap, rect: rect)
+//        circlePath.fill()
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = circlePath.cgPath
+        layer.mask = maskLayer
+        
+        drawUnfilledGradientCircle(ctx: ctx!, center: centerPoint, radius: calculatedRadius, lineWidth: CGFloat(lineWidth), maximumAngle: maximumAngle, lineCap: unfilledLineCap, rect: rect)
         
         // Draw filled and unfilled lines
         drawLine(ctx: ctx!, rect: rect)
-
+        
         // Draw markings
         drawMarkings(ctx: ctx!)
 
@@ -601,7 +607,6 @@ public class MSCircularSlider: UIControl {
     
     /** Draws a circular line in the given context */
     internal func drawLine(ctx: CGContext, rect: CGRect) {
-        
         filledColor.set()
         // Draw filled circle
         drawArc(ctx: ctx, center: centerPoint, radius: calculatedRadius, lineWidth: CGFloat(lineWidth), fromAngle: 0, toAngle: CGFloat(angle), lineCap: filledLineCap)
@@ -674,7 +679,13 @@ public class MSCircularSlider: UIControl {
     }
     
     /** Draws an unfilled circle in context */
-    internal func drawUnfilledCircle(ctx: CGContext, center: CGPoint, radius: CGFloat, lineWidth: CGFloat, maximumAngle: CGFloat, lineCap: CGLineCap, rect: CGRect) {
+    internal func drawUnfilledCircle(ctx: CGContext, center: CGPoint, radius: CGFloat, lineWidth: CGFloat, maximumAngle: CGFloat, lineCap: CGLineCap) {
+        filledColor.set()
+        drawArc(ctx: ctx, center: center, radius: radius, lineWidth: lineWidth, fromAngle: maximumAngle - 30, toAngle: 30, lineCap: lineCap, isShadow: true)
+    }
+    
+    /** Draws an unfilled gradient circle in context */
+    internal func drawUnfilledGradientCircle(ctx: CGContext, center: CGPoint, radius: CGFloat, lineWidth: CGFloat, maximumAngle: CGFloat, lineCap: CGLineCap, rect: CGRect) {
 
         drawGradientArc(ctx: ctx, center: center, radius: radius, lineWidth: lineWidth, fromAngle: 0, toAngle: maximumAngle, lineCap: lineCap, rect: rect)
     }
@@ -712,7 +723,7 @@ public class MSCircularSlider: UIControl {
     }
     
     /** Draws an arc in context */
-    internal func drawArc(ctx: CGContext, center: CGPoint, radius: CGFloat, lineWidth: CGFloat, fromAngle: CGFloat, toAngle: CGFloat, lineCap: CGLineCap) {
+    internal func drawArc(ctx: CGContext, center: CGPoint, radius: CGFloat, lineWidth: CGFloat, fromAngle: CGFloat, toAngle: CGFloat, lineCap: CGLineCap, isShadow: Bool = false) {
         let cartesianFromAngle = toCartesian(toRad(Double(fromAngle)))
         let cartesianToAngle = toCartesian(toRad(Double(toAngle)))
         
@@ -720,6 +731,7 @@ public class MSCircularSlider: UIControl {
         
         ctx.setLineWidth(lineWidth)
         ctx.setLineCap(lineCap)
+        
         ctx.drawPath(using: CGPathDrawingMode.stroke)
     }
     

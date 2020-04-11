@@ -580,6 +580,15 @@ Minimum Distance Between Handles: 10
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-shdaow" translatesAutoresizingMaskIntoConstraints="NO" id="dnd-GS-NJQ">
+                                <rect key="frame" x="132" y="173" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="1" green="0.35686274509999999" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="JnY-k7-jy6"/>
+                                    <constraint firstAttribute="width" constant="150" id="cbN-VX-iDb"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxu-Nw-nxR" customClass="MSGradientCircularSlider" customModule="MSCircularSliderExample" customModuleProvider="target">
                                 <rect key="frame" x="103.66666666666669" y="66" width="207" height="207"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -599,7 +608,7 @@ Minimum Distance Between Handles: 10
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qz1-uG-o8i">
-                                <rect key="frame" x="51.666666666666657" y="322" width="310.66666666666674" height="89.333333333333314"/>
+                                <rect key="frame" x="51.666666666666657" y="414" width="310.66666666666674" height="58.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="First Color">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -609,7 +618,7 @@ Minimum Distance Between Handles: 10
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DB-as-FLD">
-                                <rect key="frame" x="51.666666666666657" y="550.66666666666663" width="310.66666666666674" height="89.333333333333371"/>
+                                <rect key="frame" x="51.666666666666657" y="581.33333333333337" width="310.66666666666674" height="58.666666666666629"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Third Color">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -619,7 +628,7 @@ Minimum Distance Between Handles: 10
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flr-UO-qLT">
-                                <rect key="frame" x="51.666666666666657" y="436.33333333333331" width="310.66666666666674" height="89.333333333333314"/>
+                                <rect key="frame" x="51.666666666666657" y="497.66666666666669" width="310.66666666666674" height="58.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Second Color">
                                     <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -632,13 +641,15 @@ Minimum Distance Between Handles: 10
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oxu-Nw-nxR" firstAttribute="width" secondItem="rZs-kP-8UA" secondAttribute="width" multiplier="0.5" id="0aa-Hi-Y4q"/>
+                            <constraint firstItem="dnd-GS-NJQ" firstAttribute="centerX" secondItem="rZs-kP-8UA" secondAttribute="centerX" id="2Ua-lu-oyc"/>
                             <constraint firstItem="qz1-uG-o8i" firstAttribute="width" secondItem="rZs-kP-8UA" secondAttribute="width" multiplier="0.75" id="4iR-1m-5so"/>
                             <constraint firstItem="qz1-uG-o8i" firstAttribute="centerX" secondItem="uGL-Ok-kZ8" secondAttribute="centerX" id="686-Pc-jL3"/>
+                            <constraint firstItem="dnd-GS-NJQ" firstAttribute="top" secondItem="oxu-Nw-nxR" secondAttribute="bottom" constant="-100" id="GCn-hy-KZZ"/>
                             <constraint firstItem="uGL-Ok-kZ8" firstAttribute="bottom" secondItem="7DB-as-FLD" secondAttribute="bottom" multiplier="1.15" symbolic="YES" id="Gsl-4E-oIf"/>
                             <constraint firstItem="fXO-CI-y43" firstAttribute="height" secondItem="oxu-Nw-nxR" secondAttribute="height" multiplier="0.3" id="JP5-eZ-B8u"/>
                             <constraint firstItem="flr-UO-qLT" firstAttribute="width" secondItem="7DB-as-FLD" secondAttribute="width" id="Ka3-Tt-ljt"/>
                             <constraint firstItem="7DB-as-FLD" firstAttribute="height" secondItem="flr-UO-qLT" secondAttribute="height" id="Qik-GC-060"/>
-                            <constraint firstItem="qz1-uG-o8i" firstAttribute="top" secondItem="oxu-Nw-nxR" secondAttribute="bottom" multiplier="1.15" constant="8" symbolic="YES" id="RKO-fQ-wVj"/>
+                            <constraint firstItem="qz1-uG-o8i" firstAttribute="top" secondItem="oxu-Nw-nxR" secondAttribute="bottom" multiplier="1.15" constant="100" id="RKO-fQ-wVj"/>
                             <constraint firstItem="7DB-as-FLD" firstAttribute="centerX" secondItem="flr-UO-qLT" secondAttribute="centerX" id="Tks-7R-QHl"/>
                             <constraint firstItem="oxu-Nw-nxR" firstAttribute="centerX" secondItem="uGL-Ok-kZ8" secondAttribute="centerX" id="WI4-y2-8fS"/>
                             <constraint firstItem="fXO-CI-y43" firstAttribute="centerY" secondItem="oxu-Nw-nxR" secondAttribute="centerY" id="bAo-dA-t2X"/>
@@ -654,6 +665,7 @@ Minimum Distance Between Handles: 10
                         <viewLayoutGuide key="safeArea" id="uGL-Ok-kZ8"/>
                     </view>
                     <connections>
+                        <outlet property="bgShadow" destination="dnd-GS-NJQ" id="hSn-rB-stj"/>
                         <outlet property="firstColorBtn" destination="qz1-uG-o8i" id="x63-B4-20S"/>
                         <outlet property="secondColorBtn" destination="flr-UO-qLT" id="hPm-qP-WcQ"/>
                         <outlet property="slider" destination="oxu-Nw-nxR" id="BG5-l1-ZrI"/>
@@ -666,4 +678,7 @@ Minimum Distance Between Handles: 10
             <point key="canvasLocation" x="1008.6956521739131" y="1608.4239130434785"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bg-shdaow" width="310" height="310"/>
+    </resources>
 </document>

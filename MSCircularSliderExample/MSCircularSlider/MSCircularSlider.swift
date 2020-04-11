@@ -459,8 +459,13 @@ public class MSCircularSlider: UIControl {
         super.draw(rect)
         let ctx = UIGraphicsGetCurrentContext()
  
-//        drawUnfilledCircle(ctx: ctx!, center: centerPoint, radius: calculatedRadius, lineWidth: CGFloat(lineWidth), maximumAngle: maximumAngle, lineCap: unfilledLineCap)
-
+        let circlePath = UIBezierPath(arcCenter: centerPoint, radius: calculatedRadius + 8, startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: false)
+        
+//        circlePath.fill()
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = circlePath.cgPath
+        layer.mask = maskLayer
+        
         drawUnfilledGradientCircle(ctx: ctx!, center: centerPoint, radius: calculatedRadius, lineWidth: CGFloat(lineWidth), maximumAngle: maximumAngle, lineCap: unfilledLineCap, rect: rect)
         
         // Draw filled and unfilled lines

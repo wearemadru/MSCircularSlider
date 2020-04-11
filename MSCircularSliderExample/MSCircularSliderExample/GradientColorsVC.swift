@@ -20,6 +20,7 @@ class GradientColorsVC: UIViewController, MSCircularSliderDelegate, ColorPickerD
     // Members
     var currentColorPickTag = 0
     var colorPicker: ColorPickerView?
+    let shapeLayer = CAShapeLayer()
     
     // Action
     @IBAction func colorPickAction(_ sender: UIButton) {

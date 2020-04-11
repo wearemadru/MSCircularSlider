@@ -198,7 +198,7 @@ public class MSDoubleHandleCircularSlider: MSCircularSlider {
     override func drawLine(ctx: CGContext, rect: CGRect) {
         unfilledColor.set()
         // Draw unfilled circle
-        drawUnfilledCircle(ctx: ctx, center: centerPoint, radius: calculatedRadius, lineWidth: CGFloat(lineWidth), maximumAngle: maximumAngle, lineCap: unfilledLineCap, rect: rect)
+        drawUnfilledGradientCircle(ctx: ctx, center: centerPoint, radius: calculatedRadius, lineWidth: CGFloat(lineWidth), maximumAngle: maximumAngle, lineCap: unfilledLineCap, rect: rect)
         
         filledColor.set()
         // Draw filled circle
