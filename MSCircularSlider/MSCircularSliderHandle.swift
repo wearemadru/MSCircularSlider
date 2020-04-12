@@ -96,7 +96,7 @@ public class MSCircularSliderHandle: CALayer {
             
         }
     }
-    
+
     //================================================================================
     // SETTERS AND GETTERS
     //================================================================================
@@ -130,6 +130,7 @@ public class MSCircularSliderHandle: CALayer {
                            y: center().y - diameter * 0.5,
                            width: diameter,
                            height: diameter)
+
             if isRotatable {
                 let rotatedImg = imageRotated(img: image!, byDegrees: angle)
                 rotatedImg.draw(in: frame)
@@ -151,7 +152,6 @@ public class MSCircularSliderHandle: CALayer {
             
             frame = slider.drawFilledCircle(ctx: ctx, center: center(), radius: 0.5 * diameter)
         }
-        
         ctx.saveGState()
         UIGraphicsPopContext()
     }

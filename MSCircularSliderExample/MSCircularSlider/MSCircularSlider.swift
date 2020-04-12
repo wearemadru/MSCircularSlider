@@ -440,13 +440,13 @@ public class MSCircularSlider: UIControl {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = .clear
         initHandle()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        backgroundColor = .white
+        backgroundColor = .clear
         initHandle()
     }
     
@@ -458,12 +458,12 @@ public class MSCircularSlider: UIControl {
     override public func draw(_ rect: CGRect) {
         super.draw(rect)
         let ctx = UIGraphicsGetCurrentContext()
- 
-        let circlePath = UIBezierPath(arcCenter: centerPoint, radius: calculatedRadius + extraRadius, startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: false)
-        
+
+        let circlePath = UIBezierPath(arcCenter: centerPoint, radius: calculatedRadius + 2.5, startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: false)
+        UIColor.white.set()
+        circlePath.fill()
         let maskLayer = CAShapeLayer()
         maskLayer.path = circlePath.cgPath
-        layer.mask = maskLayer
         
         drawUnfilledGradientCircle(ctx: ctx!, center: centerPoint, radius: calculatedRadius, lineWidth: CGFloat(lineWidth), maximumAngle: maximumAngle, lineCap: unfilledLineCap, rect: rect)
         
@@ -478,7 +478,6 @@ public class MSCircularSlider: UIControl {
 
         // Draw labels
         drawLabels(ctx: ctx!)
-        
         
         // Rotate slider
         let rotationalTransform = getRotationalTransform()
@@ -506,6 +505,7 @@ public class MSCircularSlider: UIControl {
         
         if handle.contains(location) {
             handle.isPressed = true
+            print(location)
             castDelegate?.circularSlider(self, startedTrackingWith: currentValue)
             setNeedsDisplay()
             return true

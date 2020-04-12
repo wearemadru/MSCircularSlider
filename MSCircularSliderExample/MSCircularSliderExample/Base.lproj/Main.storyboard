@@ -580,20 +580,21 @@ Minimum Distance Between Handles: 10
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-shdaow" translatesAutoresizingMaskIntoConstraints="NO" id="dnd-GS-NJQ">
-                                <rect key="frame" x="132" y="173" width="150" height="150"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-shdaow" translatesAutoresizingMaskIntoConstraints="NO" id="dnd-GS-NJQ">
+                                <rect key="frame" x="82" y="81" width="250" height="250"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="1" green="0.35686274509999999" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="JnY-k7-jy6"/>
-                                    <constraint firstAttribute="width" constant="150" id="cbN-VX-iDb"/>
+                                    <constraint firstAttribute="height" constant="250" id="JnY-k7-jy6"/>
+                                    <constraint firstAttribute="width" constant="250" id="cbN-VX-iDb"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxu-Nw-nxR" customClass="MSGradientCircularSlider" customModule="MSCircularSliderExample" customModuleProvider="target">
-                                <rect key="frame" x="103.66666666666669" y="66" width="207" height="207"/>
+                                <rect key="frame" x="82" y="66" width="250" height="250"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="oxu-Nw-nxR" secondAttribute="height" multiplier="1:1" id="VCR-tx-nar"/>
+                                    <constraint firstAttribute="width" constant="250" id="I5b-cU-kf7"/>
+                                    <constraint firstAttribute="height" constant="250" id="cJZ-7C-dfr"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="_currentValue">
@@ -602,13 +603,13 @@ Minimum Distance Between Handles: 10
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXO-CI-y43">
-                                <rect key="frame" x="134.66666666666669" y="138.33333333333334" width="144.66666666666669" height="62.333333333333343"/>
+                                <rect key="frame" x="186" y="181" width="42" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qz1-uG-o8i">
-                                <rect key="frame" x="51.666666666666657" y="414" width="310.66666666666674" height="58.666666666666686"/>
+                                <rect key="frame" x="51.666666666666657" y="463.33333333333331" width="310.66666666666674" height="42.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="First Color">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -618,7 +619,7 @@ Minimum Distance Between Handles: 10
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DB-as-FLD">
-                                <rect key="frame" x="51.666666666666657" y="581.33333333333337" width="310.66666666666674" height="58.666666666666629"/>
+                                <rect key="frame" x="51.666666666666657" y="597.66666666666663" width="310.66666666666674" height="42.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Third Color">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -628,7 +629,7 @@ Minimum Distance Between Handles: 10
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flr-UO-qLT">
-                                <rect key="frame" x="51.666666666666657" y="497.66666666666669" width="310.66666666666674" height="58.666666666666686"/>
+                                <rect key="frame" x="51.666666666666657" y="530.66666666666663" width="310.66666666666674" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Second Color">
                                     <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -640,17 +641,16 @@ Minimum Distance Between Handles: 10
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oxu-Nw-nxR" firstAttribute="width" secondItem="rZs-kP-8UA" secondAttribute="width" multiplier="0.5" id="0aa-Hi-Y4q"/>
+                            <constraint firstItem="dnd-GS-NJQ" firstAttribute="centerX" secondItem="oxu-Nw-nxR" secondAttribute="centerX" id="1ZT-Kj-C1h"/>
                             <constraint firstItem="dnd-GS-NJQ" firstAttribute="centerX" secondItem="rZs-kP-8UA" secondAttribute="centerX" id="2Ua-lu-oyc"/>
                             <constraint firstItem="qz1-uG-o8i" firstAttribute="width" secondItem="rZs-kP-8UA" secondAttribute="width" multiplier="0.75" id="4iR-1m-5so"/>
                             <constraint firstItem="qz1-uG-o8i" firstAttribute="centerX" secondItem="uGL-Ok-kZ8" secondAttribute="centerX" id="686-Pc-jL3"/>
-                            <constraint firstItem="dnd-GS-NJQ" firstAttribute="top" secondItem="oxu-Nw-nxR" secondAttribute="bottom" constant="-100" id="GCn-hy-KZZ"/>
                             <constraint firstItem="uGL-Ok-kZ8" firstAttribute="bottom" secondItem="7DB-as-FLD" secondAttribute="bottom" multiplier="1.15" symbolic="YES" id="Gsl-4E-oIf"/>
-                            <constraint firstItem="fXO-CI-y43" firstAttribute="height" secondItem="oxu-Nw-nxR" secondAttribute="height" multiplier="0.3" id="JP5-eZ-B8u"/>
                             <constraint firstItem="flr-UO-qLT" firstAttribute="width" secondItem="7DB-as-FLD" secondAttribute="width" id="Ka3-Tt-ljt"/>
                             <constraint firstItem="7DB-as-FLD" firstAttribute="height" secondItem="flr-UO-qLT" secondAttribute="height" id="Qik-GC-060"/>
                             <constraint firstItem="qz1-uG-o8i" firstAttribute="top" secondItem="oxu-Nw-nxR" secondAttribute="bottom" multiplier="1.15" constant="100" id="RKO-fQ-wVj"/>
                             <constraint firstItem="7DB-as-FLD" firstAttribute="centerX" secondItem="flr-UO-qLT" secondAttribute="centerX" id="Tks-7R-QHl"/>
+                            <constraint firstItem="dnd-GS-NJQ" firstAttribute="centerY" secondItem="oxu-Nw-nxR" secondAttribute="centerY" constant="15" id="VkV-sA-wsL"/>
                             <constraint firstItem="oxu-Nw-nxR" firstAttribute="centerX" secondItem="uGL-Ok-kZ8" secondAttribute="centerX" id="WI4-y2-8fS"/>
                             <constraint firstItem="fXO-CI-y43" firstAttribute="centerY" secondItem="oxu-Nw-nxR" secondAttribute="centerY" id="bAo-dA-t2X"/>
                             <constraint firstItem="qz1-uG-o8i" firstAttribute="width" secondItem="flr-UO-qLT" secondAttribute="width" id="cKu-md-K5A"/>
@@ -659,7 +659,6 @@ Minimum Distance Between Handles: 10
                             <constraint firstItem="flr-UO-qLT" firstAttribute="centerX" secondItem="qz1-uG-o8i" secondAttribute="centerX" id="fpt-CP-aVy"/>
                             <constraint firstItem="flr-UO-qLT" firstAttribute="height" secondItem="qz1-uG-o8i" secondAttribute="height" id="nF9-Rs-cNE"/>
                             <constraint firstItem="7DB-as-FLD" firstAttribute="top" secondItem="flr-UO-qLT" secondAttribute="bottom" constant="25" id="nyD-Ym-V1U"/>
-                            <constraint firstItem="fXO-CI-y43" firstAttribute="width" secondItem="oxu-Nw-nxR" secondAttribute="width" multiplier="0.7" id="ugB-Ar-FKw"/>
                             <constraint firstItem="oxu-Nw-nxR" firstAttribute="top" secondItem="uGL-Ok-kZ8" secondAttribute="top" multiplier="1.5" symbolic="YES" id="yD6-kZ-05c"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uGL-Ok-kZ8"/>

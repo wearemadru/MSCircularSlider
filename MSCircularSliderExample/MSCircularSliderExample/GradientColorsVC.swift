@@ -21,6 +21,7 @@ class GradientColorsVC: UIViewController, MSCircularSliderDelegate, ColorPickerD
     var currentColorPickTag = 0
     var colorPicker: ColorPickerView?
     let shapeLayer = CAShapeLayer()
+    var handle: UIImageView?
     
     // Action
     @IBAction func colorPickAction(_ sender: UIButton) {
@@ -33,14 +34,16 @@ class GradientColorsVC: UIViewController, MSCircularSliderDelegate, ColorPickerD
     // Init
     override func viewDidLoad() {
         super.viewDidLoad()
-        slider.backgroundColor = .white
+        slider.backgroundColor = .clear
         colorPicker = ColorPickerView(frame: CGRect(x: 0, y: view.center.y - view.frame.height * 0.3 / 2.0, width: view.frame.width, height: view.frame.height * 0.3))
         colorPicker?.isHidden = true
         colorPicker?.delegate = self
         view.addSubview(colorPicker!)
-        
+        slider.handleColor = .clear
         valueLbl.text = String(format: "%.1f", (slider?.currentValue)!)
-        
+        slider.handleType = .largeCircle
+        slider.handleEnlargementPoints = 70
+        slider.handleImage = UIImage(named: "handle")
         slider.delegate = self
     }
 
