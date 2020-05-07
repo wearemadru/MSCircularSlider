@@ -100,7 +100,7 @@ public class MSGradientCircularSlider: MSCircularSlider {
         let _percentage = percentage == 100 ? 99.9 : percentage
         let colorPercentageInterval = 100.0 / Double(gradientColors.count - 1)
         
-        let currentInterval = percentage / colorPercentageInterval
+        let currentInterval = _percentage / colorPercentageInterval
         
         let intervalPercentage = currentInterval - Double(Int(currentInterval))     // how far along between two colors
         
