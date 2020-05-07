@@ -97,9 +97,10 @@ public class MSGradientCircularSlider: MSCircularSlider {
     
     /** Calculates the color for the current angle */
     private func colorFor(percentage: Double) -> UIColor {
+        let _percentage = percentage == 100 ? 99.9 : percentage
         let colorPercentageInterval = 100.0 / Double(gradientColors.count - 1)
         
-        let currentInterval = percentage / colorPercentageInterval - (percentage == 100 ? 1 : 0)
+        let currentInterval = percentage / colorPercentageInterval
         
         let intervalPercentage = currentInterval - Double(Int(currentInterval))     // how far along between two colors
         
